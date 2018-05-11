@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Http\Requests\CreatePostRequest;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
     public function index(){
 
-        $posts= Post::all();
+        $posts= Post::orderBy('id','desc')->get();
         return view('post.index')->with(['posts'=>$posts]);
     }
 
@@ -23,5 +24,19 @@ class PostController extends Controller
     public function create(){
 
         return view('post.create');
+    }
+
+    public function store(CreatePostRequest $request){
+
+       $post = new Post();
+        $post->title = $request->get('title');
+        $post->descripcion = $request->get('descripcion');
+        $post->url = $request->get('url');
+        $post->save();
+
+      //  $post=Post::create($request->only('title','descripcion','url'));
+
+        return redirect()->route('posts_path');
+
     }
 }
