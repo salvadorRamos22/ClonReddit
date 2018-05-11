@@ -1,5 +1,7 @@
 <?php
 
-Route::get('/post','PostController@index');
+Route::name('posts_path')->get('/post','PostController@index');
 
-Route::get('/post/{id}','PostController@show');
+Route::name('create_path')->get('/post/create','PostController@create');
+
+Route::name('post_path')->get('/post/{post}','PostController@show');

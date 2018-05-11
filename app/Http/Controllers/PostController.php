@@ -2,17 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
     public function index(){
 
-        return view('post.index');
+        $posts= Post::all();
+        return view('post.index')->with(['posts'=>$posts]);
     }
 
-    public function show(){
+    public function show($postID){
 
-        return view('post.show');
+        $post = Post::find($postID);
+        return view('post.show')->with(['post'=>$post]);
+
+    }
+
+    public function create(){
+
+        return view('post.create');
     }
 }

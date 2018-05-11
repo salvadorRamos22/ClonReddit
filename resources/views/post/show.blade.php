@@ -1,13 +1,17 @@
 @extends('layouts.base')
 
 @section('content')
+
+
 <hr>
 <div class="row">
      <div class="col-md-12">
-          <h2>Titulo</h2>
-          <p>Posteado hace 3 horas desde show</p>
+          <h2>{{$post->title}}</h2>
+          <p>{{$post->descripcion}}</p>
+          <a href="{{$post->url}}">{{$post->url}}</a>
      </div>
 </div>
 <hr>
+
 
 @endsection
