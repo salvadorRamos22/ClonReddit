@@ -10,7 +10,7 @@ class PostController extends Controller
 {
     public function index(){
 
-        $posts= Post::orderBy('id','desc')->get();
+        $posts= Post::orderBy('id','desc')->paginate(10);
         return view('post.index')->with(['posts'=>$posts]);
     }
 
@@ -37,6 +37,14 @@ class PostController extends Controller
       //  $post=Post::create($request->only('title','descripcion','url'));
 
         return redirect()->route('posts_path');
+
+    }
+
+    public function edit(Post $post){
+        return view('post.edit')->with(['post'=>$post]);
+    }
+
+    public function update(Post $post, Request $request){
 
     }
 }
