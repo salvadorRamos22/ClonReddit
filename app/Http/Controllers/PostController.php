@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Http\Requests\CreatePostRequest;
+use App\Http\Requests\UpdatePostRequest;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -44,7 +45,23 @@ class PostController extends Controller
         return view('post.edit')->with(['post'=>$post]);
     }
 
-    public function update(Post $post, Request $request){
+    public function update(Post $post, UpdatePostRequest $request){
+        //PRIMER METODO
+      $post->title = $request->get('title');
+      $post->descripcion = $request->get('descripcion');
+      $post->url = $request->get('url');
+      $post->save();
 
+    //  $post->update(
+    //      $request->only('title','descripcion','url')
+    //  );
+
+      return redirect()->route('post_path',['post'=>$post->id]);
+    }
+
+    public function delete(Post $post){
+        $post->delete();
+
+        return redirect()->route('post_path');
     }
 }

@@ -11,3 +11,5 @@ Route::name('post_path')->get('/post/{post}','PostController@show');
 Route::name('edit_post_path')->get('/post/{post}/edit','PostController@edit');
 
 Route::name('update_post_path')->put('/posts/{post}','PostController@update');
+
+Route::name('delete_post_path')->delete('/post/{post}','PostController@delete');
