@@ -1,4 +1,4 @@
-@extends('layouts.base')
+@extends('layouts.app')
 
 @section('content')
 <hr>
@@ -9,12 +9,13 @@
           <h2><a href="{{route('post_path',['post'=>$post->id])}}">{{$post->title}}</a></h2>
           <small class="pull-right">
                <a href="{{route('edit_post_path',['post'=>$post->id])}}" class="btn btn-info">Editar</a>
-               <form action="{{ route('delete_post_path',['post'=>$post->id])}}" method="POST">
-               {{csrf_field()}}
-               {{method_field('DELETE')}}
-               <button type="submit" class="btn btn-danger">Eliminar</button>
-               
+               <form action="{{route('eliminar_post_path',['post'=>$post->id])}}" method="POST">
+                    {{csrf_field()}}
+                    {{method_field('DELETE')}}
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
                </form>
+               
+               
           </small>
           <p>Posteado {{$post->created_at->diffForHumans()}}</p>
           

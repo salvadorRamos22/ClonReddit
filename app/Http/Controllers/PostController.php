@@ -24,7 +24,9 @@ class PostController extends Controller
 
     public function create(){
 
-        return view('post.create');
+        $post = new Post;
+
+        return view('post.create')->with(['post'=>$post]);
     }
 
     public function store(CreatePostRequest $request){
@@ -34,7 +36,7 @@ class PostController extends Controller
         $post->descripcion = $request->get('descripcion');
         $post->url = $request->get('url');
         $post->save();
-
+        session()->flash('mensaje','Post creado');
       //  $post=Post::create($request->only('title','descripcion','url'));
 
         return redirect()->route('posts_path');
@@ -51,7 +53,7 @@ class PostController extends Controller
       $post->descripcion = $request->get('descripcion');
       $post->url = $request->get('url');
       $post->save();
-
+      session()->flash('mensaje','Post Editado');
     //  $post->update(
     //      $request->only('title','descripcion','url')
     //  );
@@ -61,7 +63,7 @@ class PostController extends Controller
 
     public function delete(Post $post){
         $post->delete();
-
-        return redirect()->route('post_path');
+        session()->flash('mensaje','Post Eliminado');
+        return redirect()->route('posts_path');
     }
 }

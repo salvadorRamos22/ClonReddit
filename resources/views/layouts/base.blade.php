@@ -12,11 +12,20 @@
      <div class="container">
           <div class="row">
                <div class="col-md-12">
-                    <h1>Reddit</h1>
+                    <h1><a href="{{route('posts_path')}}">Reddit</a> </h1>
+                    <h1>
+                         <small class="pull-right">
+                              <a href="{{route('create_path')}}">Crear post</a>
+                         </small>
+                    </h1>
                </div>
           </div>
           <hr>
-          @yield('content')
+          @include('post.error')
+          @include('layouts._mensaje')
+          <div class="container">
+               @yield('content')
+          </div>
      </div>
 </body>
 </html>
